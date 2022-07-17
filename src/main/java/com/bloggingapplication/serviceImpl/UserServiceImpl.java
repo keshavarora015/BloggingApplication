@@ -2,7 +2,7 @@ package com.bloggingapplication.serviceImpl;
 
 import com.bloggingapplication.entities.User;
 import com.bloggingapplication.exceptions.ResourceNotFoundException;
-import com.bloggingapplication.payloads.UserDTO;
+import com.bloggingapplication.payloads.UserDto;
 import com.bloggingapplication.repositories.UserRepo;
 import com.bloggingapplication.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -22,14 +22,14 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
 
     @Override
-    public UserDTO createUser(UserDTO userDTO) {
+    public UserDto createUser(UserDto userDTO) {
         User user = userDtoToUser(userDTO);
         user=userRepo.save(user);
         return userToUserDTO(user) ;
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO, Integer id) {
+    public UserDto updateUser(UserDto userDTO, Integer id) {
 
         User user = null;
         try{
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUserById(Integer id) {
+    public UserDto getUserById(Integer id) {
         User user;
         try
         {
@@ -62,10 +62,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         List<User> users=userRepo.findAll();
 
-        List<UserDTO> userDTOS=users.stream().map(user ->userToUserDTO(user)).collect(Collectors.toList());
+        List<UserDto> userDTOS=users.stream().map(user ->userToUserDTO(user)).collect(Collectors.toList());
         return userDTOS;
     }
 
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private User userDtoToUser(UserDTO userDTO)
+    private User userDtoToUser(UserDto userDTO)
     {
         User user=this.modelMapper.map(userDTO,User.class);
     //       User user=new User();
@@ -93,10 +93,10 @@ public class UserServiceImpl implements UserService {
        return user;
     }
 
-    private UserDTO userToUserDTO(User user)
+    private UserDto userToUserDTO(User user)
     {
-        UserDTO userDTO=this.modelMapper.map(user,UserDTO.class);
-//        UserDTO userDTO=new UserDTO();
+        UserDto userDTO=this.modelMapper.map(user, UserDto.class);
+//        UserDto userDTO=new UserDto();
 //        userDTO.setId(user.getId());
 //        userDTO.setName(user.getName());
 //        userDTO.setEmail(user.getEmail());

@@ -1,7 +1,7 @@
 package com.bloggingapplication.controllers;
 
 import com.bloggingapplication.payloads.ApiResponse;
-import com.bloggingapplication.payloads.UserDTO;
+import com.bloggingapplication.payloads.UserDto;
 import com.bloggingapplication.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,16 +19,16 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity createUser(@Valid @RequestBody UserDTO userDTO)
+    public ResponseEntity createUser(@Valid @RequestBody UserDto userDTO)
     {
-            UserDTO user=userService.createUser(userDTO);
+            UserDto user=userService.createUser(userDTO);
             return new ResponseEntity(new ApiResponse("User Created Successfully!!",true), HttpStatus.CREATED);
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO,@PathVariable("userId") Integer userId)
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDTO, @PathVariable("userId") Integer userId)
     {
-        UserDTO user=userService.updateUser(userDTO,userId);
+        UserDto user=userService.updateUser(userDTO,userId);
         ResponseEntity responseEntity = new ResponseEntity(new ApiResponse("User Updated Successfully!!", true), HttpStatus.OK);
         return responseEntity;
     }
@@ -43,16 +43,16 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<UserDTO>> getAllUsers()
+    public ResponseEntity<List<UserDto>> getAllUsers()
     {
-        List<UserDTO> allUsers=userService.getAllUsers();
+        List<UserDto> allUsers=userService.getAllUsers();
         return new ResponseEntity(allUsers,HttpStatus.OK);
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getAUser(@PathVariable Integer userId)
+    public ResponseEntity<UserDto> getAUser(@PathVariable Integer userId)
     {
-        UserDTO userById = userService.getUserById(userId);
+        UserDto userById = userService.getUserById(userId);
         return ResponseEntity.ok(userById);
     }
 }

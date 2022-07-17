@@ -1,18 +1,18 @@
 package com.bloggingapplication.services;
 
-import com.bloggingapplication.payloads.UserDTO;
+import com.bloggingapplication.payloads.UserDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    UserDTO createUser(UserDTO userDTO);
+    UserDto createUser(UserDto userDTO);
 
-    UserDTO updateUser(UserDTO userDTO,Integer id);
+    UserDto updateUser(UserDto userDTO, Integer id);
 
-    UserDTO getUserById(Integer id);
+    UserDto getUserById(Integer id);
 
-    List<UserDTO> getAllUsers();
+    List<UserDto> getAllUsers();
 
     void deleteUser(Integer Id);
 }

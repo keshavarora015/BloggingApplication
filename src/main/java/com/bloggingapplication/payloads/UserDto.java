@@ -1,9 +1,8 @@
 package com.bloggingapplication.payloads;
 
-import javax.persistence.Column;
 import javax.validation.constraints.*;
 
-public class UserDTO {
+public class UserDto {
 
     private Integer id;
 
@@ -16,23 +15,22 @@ public class UserDTO {
     private String email;
 
     @NotEmpty
-    @Size(min = 5, max = 10,
-          message = "Password must contain at least one digit [0-9]." +
+    @Size(min = 5, max = 10)
+    @Pattern(regexp ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{5,10}$", message = "Password must contain at least one digit [0-9]." +
             "Password must contain at least one lowercase Latin character [a-z]." +
             "Password must contain at least one uppercase Latin character [A-Z]." +
             "Password must contain at least one special character like ! @ # & ( )." +
             "Password must contain a length of at least 5 characters and a maximum of 10 characters.")
-    @Pattern(regexp ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{5,10}$")
     private String password;
 
     @NotEmpty
     private String about;
 
-    public UserDTO() {
+    public UserDto() {
         super();
     }
 
-    public UserDTO(Integer id, String name, String email, String password, String about) {
+    public UserDto(Integer id, String name, String email, String password, String about) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -82,7 +80,7 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
+        return "UserDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
