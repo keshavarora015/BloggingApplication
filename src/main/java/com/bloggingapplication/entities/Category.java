@@ -1,6 +1,8 @@
 package com.bloggingapplication.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -15,6 +17,11 @@ public class Category {
 
     @Column(name = "description")
     private String categoryDesc;
+
+    //One Category can have Multiple Posts
+    @OneToMany(mappedBy = "category",cascade =CascadeType.ALL,fetch=FetchType.LAZY)
+    List<Post> posts=new ArrayList<>();
+
 
     public Category() {
     }

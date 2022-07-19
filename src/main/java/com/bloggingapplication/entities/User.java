@@ -4,6 +4,8 @@ package com.bloggingapplication.entities;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -23,6 +25,10 @@ public class User {
     private String password;
 
     private String about;
+
+    //One User can have Multiple Posts
+    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL,fetch=FetchType.LAZY)
+    List<Post> posts=new ArrayList<>();
 
     public User() {
 
